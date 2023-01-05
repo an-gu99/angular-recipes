@@ -18,8 +18,6 @@ export class RecipeEffects {
         )
       ),
       map((recipes) => {
-        recipes = recipes ? recipes : [];
-
         return recipes.map((recipe) => {
           return {
             ...recipe,

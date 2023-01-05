@@ -136,6 +136,7 @@ export class AuthEffects {
           _token: string;
           _tokenExpirationdate: string;
         } = JSON.parse(localStorage.getItem('userData'));
+
         if (!userData) {
           return { type: 'DUMMY' };
         }
@@ -154,7 +155,6 @@ export class AuthEffects {
 
           this.authService.setLogoutTimer(expirationDuration);
 
-          console.log(loadedUser);
           return AuthActions.Authenticate_Success({
             email: loadedUser.email,
             userId: loadedUser.id,
