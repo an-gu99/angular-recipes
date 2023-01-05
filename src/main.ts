@@ -10,6 +10,9 @@ import { environment } from './environments/environment';
 import * as fromApp from './app/store/app.reducer';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './app/auth/auth-interceptor';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 if (environment.production) {
   enableProdMode();
@@ -23,10 +26,15 @@ bootstrapApplication(AppComponent, {
       multi: true,
     },
     importProvidersFrom(
-      HttpClientModule,
-      AppRoutingModule,
+      ServiceWorkerModule.register('ngsw-worker.js', {
+        enabled: environment.production,
+      }),
       StoreModule.forRoot(fromApp.appReducer),
-      EffectsModule.forRoot([AuthEffects, RecipeEffects])
+      EffectsModule.forRoot([AuthEffects, RecipeEffects]),
+      StoreDevtoolsModule.instrument({ logOnly: environment.production }),
+      StoreRouterConnectingModule.forRoot(),
+      HttpClientModule,
+      AppRoutingModule
     ),
   ],
 });
