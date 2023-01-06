@@ -29,7 +29,7 @@
   ],
   "dataGroups": [
     {
-      "name": "posts",
+      "name": "recipes",
       "urls": [
         "https://ng-complete-guide-6944c-default-rtdb.europe-west1.firebasedatabase.app/recipes.json"
       ],
