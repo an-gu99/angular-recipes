@@ -26,7 +26,6 @@ const appRoutes: Routes = [
   imports: [
     RouterModule.forRoot(appRoutes, {
       preloadingStrategy: PreloadAllModules,
-      initialNavigation: 'enabledBlocking',
     }),
   ],
   exports: [RouterModule],

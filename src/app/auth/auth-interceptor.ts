@@ -18,28 +18,19 @@ export class AuthInterceptorService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    //
-    //  Store not working with SSR
-    //
-    //  return this.store.select('auth').pipe(
-    //    take(1),
-    //     map((authState) => authState.user),
-    //     exhaustMap((user) => {
-    const user: {
-      email: string;
-      id: string;
-      _token: string;
-      _tokenExpirationdate: string;
-    } = JSON.parse(localStorage.getItem('userData'));
-    if (!user) {
-      return next.handle(req);
-    }
-    const modifiedReq = req.clone({
-      params: new HttpParams().set('auth', user._token),
-    });
+    return this.store.select('auth').pipe(
+      take(1),
+      map((authState) => authState.user),
+      exhaustMap((user) => {
+        if (!user) {
+          return next.handle(req);
+        }
+        const modifiedReq = req.clone({
+          params: new HttpParams().set('auth', user.token),
+        });
 
-    return next.handle(modifiedReq);
-    //    })
-    //  );
+        return next.handle(modifiedReq);
+      })
+    );
   }
 }
