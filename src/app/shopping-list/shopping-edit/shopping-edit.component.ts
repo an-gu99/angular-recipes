@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./shopping-edit.component.css'],
 })
 export class ShoppingEditComponent implements OnInit, OnDestroy {
-  @ViewChild('data', { static: false }) formdata: NgForm;
+  @ViewChild('data') formdata: NgForm;
   subscription: Subscription;
   editMode = false;
 

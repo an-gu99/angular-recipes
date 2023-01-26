@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { map, Subscription, tap } from 'rxjs';
+import { map, Subscription } from 'rxjs';
 import * as fromApp from '../store/app.reducer';
 import * as AuthActions from '../auth/store/auth.actions';
 import * as RecipeActions from '../recipes/store/recipe.action';
@@ -39,6 +39,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onLogout() {
+    this.store.dispatch(RecipeActions.DeleteAllRecipes());
     this.store.dispatch(AuthActions.Logout());
   }
 

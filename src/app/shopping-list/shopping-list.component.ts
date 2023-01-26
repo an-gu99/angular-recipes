@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Ingredient } from '../shared/ingredient.model';
 import * as ShoppingListActions from './store/shopping-list.actions';
 import * as fromApp from '../store/app.reducer';
@@ -16,7 +16,6 @@ import { CommonModule } from '@angular/common';
 })
 export class ShoppingListComponent implements OnInit {
   ingredients: Observable<{ ingredients: Ingredient[] }>;
-  subscription: Subscription;
 
   constructor(private store: Store<fromApp.AppState>) {}
 

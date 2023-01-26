@@ -41,10 +41,6 @@ const _authReducer = createReducer(
     user: null,
     authError: action.errorMessage,
     loading: false,
-  })),
-  on(AuthActions.ClearError, (state) => ({
-    ...state,
-    authError: null,
   }))
 );
 

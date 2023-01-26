@@ -17,17 +17,15 @@ export class RecipeEffects {
           'https://ng-complete-guide-6944c-default-rtdb.europe-west1.firebasedatabase.app/recipes.json'
         )
       ),
-      map((recipes) => {
-        return recipes.map((recipe) => {
+      map((recipes) =>
+        recipes.map((recipe) => {
           return {
             ...recipe,
             ingredients: recipe.ingredients ? recipe.ingredients : [],
           };
-        });
-      }),
-      map((recipes) => {
-        return RecipeActions.SetRecipes({ recipes });
-      })
+        })
+      ),
+      map((recipes) => RecipeActions.SetRecipes({ recipes }))
     )
   );
 
@@ -36,7 +34,7 @@ export class RecipeEffects {
       this.actions$.pipe(
         ofType(RecipeActions.StoreRecipes),
         withLatestFrom(this.store.select('recipes')),
-        switchMap(([actionData, recipesState]) =>
+        switchMap(([_, recipesState]) =>
           this.http.put(
             'https://ng-complete-guide-6944c-default-rtdb.europe-west1.firebasedatabase.app/recipes.json',
             recipesState.recipes

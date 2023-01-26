@@ -39,8 +39,9 @@ const _recipeReducer = createReducer(
 
   on(RecipeAction.DeleteRecipe, (state, action) => ({
     ...state,
-    recipes: state.recipes.filter((recipe, index) => index !== action.index),
-  }))
+    recipes: state.recipes.filter((_, index) => index !== action.index),
+  })),
+  on(RecipeAction.DeleteAllRecipes, () => initialState)
 );
 
 export function recipeReducer(state: State, action: Action) {

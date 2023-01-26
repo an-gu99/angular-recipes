@@ -70,10 +70,6 @@ export class AuthComponent implements OnInit, OnDestroy {
     form.reset();
   }
 
-  onHandleError() {
-    this.store.dispatch(AuthActions.ClearError());
-  }
-
   ngOnDestroy(): void {
     if (this.closeSub) {
       this.closeSub.unsubscribe();

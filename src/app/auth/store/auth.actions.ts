@@ -7,7 +7,6 @@ export const AUTHENTICATE_SUCCESS = '[Auth] Login';
 export const LOGOUT = '[Auth] Logout';
 
 export const SIGNUP_START = '[Auth] Sign up Start';
-export const CLEAR_ERROR = '[Auth] Clear Error';
 
 export const AUTO_LOGIN = '[Auth] Auto Login';
 
@@ -48,5 +47,3 @@ export const SignUpStart = createAction(
 );
 
 export const AutoLogin = createAction(AUTO_LOGIN);
-
-export const ClearError = createAction(CLEAR_ERROR);
